@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'e_store',
     'cart',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -78,9 +79,9 @@ WSGI_APPLICATION = 'warhammer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'whshop_db',
-        'USER': 'admin',
-        'PASSWORD': '12345678',
+        'NAME': 'whshop_db2',
+        'USER': 'anon2',
+        'PASSWORD': 'qweasdzxc',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -128,3 +129,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+AUTH_USER_MODEL = 'users.User'
