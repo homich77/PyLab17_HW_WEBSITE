@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} {% if category %}{{ category.title }}{% else %} Store {% endif %} {% endblock %}
+{% block content%}
+{% for category in categories %}
+    <a href="{% url 'product_list' category.pk %}">
+        {{ category.title }}
+    </a>
+    <br/>
+{% endfor %}
+{% endblock %}
