@@ -1,5 +1,6 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from e_store.models import *
 
 
@@ -24,3 +25,39 @@ class ProductDetailView(DetailView):
     template_name = 'e_store/product.html'
     model = Product
     context_object_name = 'product'
+
+
+class ProductOrderView(TemplateView):
+    template_name = 'e_store/product.html'
+
+    def post(self, request, *args, **kwargs):
+        cart = Cart.objects.get_or_create(status='open')[0]
+        item_id = request.POST['product_id']
+        Order.objects.create(order=cart, item=Product.objects.get(pk=item_id),
+                             quantity=int(request.POST['quantity']))
+        cart.save()
+        return HttpResponseRedirect('/store/cart')
+
+
+class CartView(ListView):
+    model = Cart
+    context_object_name = 'orders'
+    template_name = 'e_store/cart.html'
+
+    def get_queryset(self):
+        cart = Cart.objects.filter(status='open')
+        if cart:
+            orders = Order.objects.filter(order=cart)
+            return orders
+        return False
+
+    def get_context_data(self, **kwargs):
+        context = super(CartView, self).get_context_data(**kwargs)
+        cart = Cart.objects.filter(status='open')
+        if cart:
+            orders = Order.objects.filter(order=cart)
+            total = 0
+            for order in orders:
+                total += order.order_price
+            context['sum'] = total
+        return context

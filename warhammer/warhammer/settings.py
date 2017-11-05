@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'e_store',
-    'cart',
     'users',
 ]
 
@@ -79,9 +78,9 @@ WSGI_APPLICATION = 'warhammer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'whshop_db2',
-        'USER': 'anon2',
-        'PASSWORD': 'qweasdzxc',
+        'NAME': 'wh_shop_db',
+        'USER': 'wh_admin',
+        'PASSWORD': 'qwe123asd',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

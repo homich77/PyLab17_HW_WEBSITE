@@ -2,10 +2,13 @@
 {% block title %} {{ category }} {% endblock %}
 {% block content%}
 <h1>{{ category }}</h1>
+<ul class="products">
 {% for product in products %}
-        <a href="{{ product.pk }}">
-            {{ product.title }}, {{ product.price}}
+    <li class="product type-product">
+	    <a href="{{ product.pk }}"><img width="250" height="250" src="{{ product.image.url }}">
+            <h2>{{ product.title }}</h2>
+	        <h3 class="price">$ {{ product.price }}</h3>
         </a>
-    <br/>
 {% endfor %}
+</ul>
 {% endblock %}

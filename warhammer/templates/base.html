@@ -1,15 +1,59 @@
+{% load staticfiles %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700" rel="stylesheet">
     <title>{% block title %}{% endblock %}</title>
 </head>
+
 <body>
-<header>
-
+<header class="site-header">
+    <div class="container">
+        <nav class="main-navigation">
+            <a href="#"><img width="464" height="110" src="http://v6846380.beget.tech/wp-content/uploads/2017/04/cropped-logo.png" class="logo"></a>
+            <div class="menu">
+                <ul class="top-menu">
+                    <li  class="menu-item "><a href="{% url 'category_list' %}">Store</a></li>
+                    <li  class="menu-item"><a href="{% url 'cart' %}">Cart</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 </header>
-
-{% block content%}
-{% endblock %}
+<div class="site-main">
+    {% block content%}
+    {% endblock %}
+</div>
+<footer>
+    <div class="container-fluid" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
+                    <p>
+                        Built by Adeptus Mechanicus and runs with the use of dark warp magic.
+                    </p>
+                </div>
+                <div class="col-md-5 col-sm-12 col-xs-12 nopadding" >
+                    <p>
+                       Copyright @ 2017 Alex Maznev
+                    </p>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12 nopadding" >
+                    <p>PRAISE OUR DARK LORDS: TZEENTCH AND SLAANESH </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>

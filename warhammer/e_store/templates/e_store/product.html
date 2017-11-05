@@ -3,7 +3,21 @@
 {% block content %}
 <div class="product-detail">
     <h1>{{ product.title  }}</h1>
-    <p>{{ product.description }}<p>
-    <img src="{{ product.image.url }}" alt="">
+    <div class="col-lg-12">
+        <div class="col-lg-4">
+            <img src="{{ product.image.url }}" alt="">
+        </div>
+        <div class="col-lg-8">
+            <p class="price">${{ product.price }}</p>
+            <p>{{ product.description }}<p>
+            <form action="{{ product.get_absolute_url }}order/" method="post">
+            {% csrf_token %}
+                <input type="hidden" name="product_id" value="{{ product.pk }}">
+                <input type="number" name="quantity" max="10" min="1" value="1">
+                <button type="submit">Add to Cart</button>
+
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}

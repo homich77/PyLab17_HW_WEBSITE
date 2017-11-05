@@ -2,10 +2,15 @@
 {% load static %}
 {% block title %} {% if category %}{{ category.title }}{% else %} Store {% endif %} {% endblock %}
 {% block content%}
+<h1>STORE</h1>
+
+<ul class="products">
 {% for category in categories %}
-    <a href="{% url 'product_list' category.pk %}">
-        {{ category.title }}
+    <li class="product-category product">
+	<a href="{% url 'product_list' category.pk %}"><img src="{{ category.image.url }}" width="250" height="250" >
+        <h2 class="category_title">{{ category.title }}</h2>
     </a>
-    <br/>
+    </li>
 {% endfor %}
+</ul>
 {% endblock %}
