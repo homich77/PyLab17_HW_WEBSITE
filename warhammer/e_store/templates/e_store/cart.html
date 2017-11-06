@@ -1,15 +1,19 @@
 {% extends "base.html" %}
 {% block title %} Cart {% endblock %}
 {% block content%}
-{% if orders %}
-    <h1>Here's your stuff:</h1>
-    {% for order in orders %}
-        <p> {{ order.item.title }} Quantity: {{ order.quantity }} Price: {{ order.item.price }} </p>
-    {% endfor %}
-
-    <p>Total: {{ sum }}</p>
-
-{% else %}
-<p>The cart is empty and all the items are <a href="category_list">here</a>.</p>
+<div class="container">
+    {% if orders %}
+        <h1>Here's your stuff:</h1>
+        {% for order in orders %}
+            <p> {{ order.item.title }} Quantity: {{ order.quantity }} Price: {{ order.item.price }} </p>
+        {% endfor %}
+        <p>Total: {{ sum }}</p>
+        <form action="{% url 'cart_pay' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit">Take my money.</button>
+        </form>
+    {% else %}
+    <p>The cart is empty and all the items are <a href="{% url 'category_list' %}">here</a>.</p>
+</div>
 {% endif %}
 {% endblock %}

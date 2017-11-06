@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %} Cart {% endblock %}
+{% block content%}
+<div class="container">
+    <h1>{{ action_title }}</h1>
+    <form method="POST" action="">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-default" value="submit"/>
+    </form>
+</div>
+{% endblock %}

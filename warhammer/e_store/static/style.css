@@ -6,8 +6,7 @@ img {
     border: 0;
     vertical-align: middle;
 }
-.product-detail p
-{
+.container p, .container li{
     font-family: 'Lora', serif;
     letter-spacing: 0.25px;
     line-height: 1.3;
@@ -33,6 +32,9 @@ img {
     margin-top: 15px;
     max-width: 210px;
     float: left;
+}
+.product-detail{
+    padding-bottom: 80px;
 }
 .main-navigation {
     float: right !important;

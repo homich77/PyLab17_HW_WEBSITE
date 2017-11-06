@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import *
 
 
 class Category(models.Model):
@@ -30,7 +31,7 @@ class Product(models.Model):
 class Cart(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     items = models.ManyToManyField(Product, through='Order')
-    STATUS_CHOICES = (('open', 'open'), ('canceled', 'canceled'))
+    STATUS_CHOICES = (('open', 'open'), ('closed', 'closed'))
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
 
     def __str__(self):

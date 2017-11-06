@@ -1,5 +1,4 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView, TemplateView
 from e_store.models import *
 
@@ -61,3 +60,14 @@ class CartView(ListView):
                 total += order.order_price
             context['sum'] = total
         return context
+
+
+class CartPayView(TemplateView):
+    template_name = 'e_store/cart.html'
+
+    def post(self, request, *args, **kwargs):
+        cart = Cart.objects.get(status='open')
+        if cart:
+            cart.status = 'closed'
+            cart.save()
+        return HttpResponseRedirect('/store/cart')
